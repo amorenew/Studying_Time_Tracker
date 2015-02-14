@@ -1,9 +1,9 @@
-package com.enew.timetracker;
+package com.enew.timetracker.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import com.enew.timetracker.R;
 
 
 public class AddChapterActivity extends Activity {
