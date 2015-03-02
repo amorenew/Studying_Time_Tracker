@@ -17,14 +17,29 @@ public class CategoryHandler extends SQLiteOpenHelper {
     public static final String NAME = "name";
     public static final String createDatabase = "create table if not exists " +
             TABLE_NAME + " (" + ID + " integer primary key autoincrement, " + NAME + " text not null unique); ";
+    private static CategoryHandler mCategoryHandler;
 
     public CategoryHandler(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
+    /**
+     * return the same instance through out the class
+     *
+     * @param context of the class
+     * @return single instance of the class throughout the app lifer cycle
+     */
+    public static CategoryHandler getInstance(final Context context) {
+        if (mCategoryHandler == null)
+            mCategoryHandler = new CategoryHandler(context);
+        return mCategoryHandler;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createDatabase);
+        db.execSQL(BookTable.CREATE_BOOK_TABLE);
+
     }
 
     @Override
