@@ -20,15 +20,19 @@ public class BookProvider extends ContentProvider {
     static final String MULTIPLE_RECORD_MIME_TYPE = "vnd.android.cursor.dir/vnd.enew.timetracker.time";
     SQLiteDatabase db;
     CategoryHandler categoryHandler;
+
     @Override
     public boolean onCreate() {
-
+        categoryHandler = new CategoryHandler(getContext());
         return true;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        return null;
+        db = categoryHandler.getReadableDatabase();
+        Cursor cursor = db.query(CategoryHandler.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+
+        return cursor;
     }
 
     @Override
@@ -44,7 +48,12 @@ public class BookProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+        db = categoryHandler.getWritableDatabase();
+        long id = db.insertWithOnConflict(CategoryHandler.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        if (id != -1) {
+            uri = Uri.withAppendedPath(uri, String.valueOf(id));
+        }
+        return uri;
     }
 
     @Override
