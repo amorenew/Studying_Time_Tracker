@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.enew.timetracker" >
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +23,10 @@
             android:name=".activity.AddChapterActivity"
             android:label="@string/title_activity_add_chapter" >
         </activity>
+
+        <provider
+            android:name="com.enew.timetracker.database.provider.TimeProvider"
+            android:authorities="TimeTracker" />
     </application>
 
 </manifest>
