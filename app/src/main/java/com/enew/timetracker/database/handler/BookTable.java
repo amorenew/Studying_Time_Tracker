@@ -30,16 +30,16 @@ public class BookTable {
      * @param book object to be added into db
      */
     private void addBook(final Book book) {
-        final ContentValues contentValues = new ContentValues();
+        ContentValues contentValues = new ContentValues();
         contentValues.put(BookTable.ID, book.getId());
         contentValues.put(BookTable.NAME, book.getName());
         contentValues.put(BookTable.CATEGORY_ID, book.getCategory_id());
         contentValues.put(BookTable.LEVEL_ID, book.getLevel_id());
-
-        CategoryHandler.getInstance(mContext).getWritableDatabase().beginTransaction();
-        CategoryHandler.getInstance(mContext).getWritableDatabase().insertOrThrow(BookTable.TABLE_NAME, null, contentValues);
-        CategoryHandler.getInstance(mContext).getWritableDatabase().setTransactionSuccessful();
-        CategoryHandler.getInstance(mContext).getWritableDatabase().endTransaction();
+//new CategoryTable(mContext).addName();
+//        CategoryTable.getInstance(mContext).getWritableDatabase().setTransactionSuccessful();
+//        CategoryTable.getInstance(mContext).getWritableDatabase().beginTransaction();
+//        CategoryTable.getInstance(mContext).getWritableDatabase().insertOrThrow(BookTable.TABLE_NAME, null, contentValues);
+//        CategoryTable.getInstance(mContext).getWritableDatabase().endTransaction();
     }
 
     /**
@@ -48,10 +48,10 @@ public class BookTable {
      * @param bookId id of book is to be deleted
      */
     private void deleteBook(final int bookId) {
-        CategoryHandler.getInstance(mContext).getWritableDatabase().beginTransaction();
-        CategoryHandler.getInstance(mContext).getWritableDatabase().delete(BookTable.TABLE_NAME, BookTable.ID + " =?", new String[]{String.valueOf(bookId)});
-        CategoryHandler.getInstance(mContext).getWritableDatabase().setTransactionSuccessful();
-        CategoryHandler.getInstance(mContext).getWritableDatabase().endTransaction();
+//        CategoryTable.getInstance(mContext).getWritableDatabase().beginTransaction();
+//        CategoryTable.getInstance(mContext).getWritableDatabase().delete(BookTable.TABLE_NAME, BookTable.ID + " =?", new String[]{String.valueOf(bookId)});
+//        CategoryTable.getInstance(mContext).getWritableDatabase().setTransactionSuccessful();
+//        CategoryTable.getInstance(mContext).getWritableDatabase().endTransaction();
     }
 
     private void updateBookInfo() {

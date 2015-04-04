@@ -4,14 +4,21 @@ package com.enew.timetracker.database.model;
  * Created by amorenew on 2/15/2015.
  */
 public class Category {
-    int id;
-    String name;
+    private long id;
+    private String name;
 
-    public int getId() {
+    public Category() {
+    }
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

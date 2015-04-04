@@ -12,7 +12,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import com.enew.timetracker.database.Constants;
-import com.enew.timetracker.database.handler.CategoryHelper;
+import com.enew.timetracker.database.handler.CategoryTable;
 
 import java.util.HashMap;
 
@@ -31,6 +31,9 @@ public class TimeProvider extends ContentProvider {
     static final int CATEGORY = 1;
     static final int CATEGORY_NAME = 2;
     static final UriMatcher uriMatcher;
+    // maps content URI "patterns" to the integer values that were set above
+    // projection map for a query
+    private static HashMap<String, String> BirthMap;
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -38,18 +41,15 @@ public class TimeProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, Constants.TABLE_CATEGORY + "/#", CATEGORY_NAME);
     }
 
-    // maps content URI "patterns" to the integer values that were set above
-    // projection map for a query
-    private static HashMap<String, String> BirthMap;
-    CategoryHelper categoryHelper;
+    CategoryTable categoryTable;
     private SQLiteDatabase database;
 
     @Override
     public boolean onCreate() {
         Context context = getContext();
-        categoryHelper = new CategoryHelper(context);
+        categoryTable = new CategoryTable(context);
         // permissions to be writable
-        database = categoryHelper.getWritableDatabase();
+        database = categoryTable.getWritableDatabase();
         if (database == null) {
             return false;
         } else {

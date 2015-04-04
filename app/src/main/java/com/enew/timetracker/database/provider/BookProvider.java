@@ -9,7 +9,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import com.enew.timetracker.database.Constants;
-import com.enew.timetracker.database.handler.CategoryHelper;
+import com.enew.timetracker.database.handler.CategoryTable;
 
 /**
  * Created by amorenew on 2/27/2015.
@@ -20,17 +20,17 @@ public class BookProvider extends ContentProvider {
     static final String SINGLE_RECORD_MIME_TYPE = "vnd.android.cursor.item/vnd.enew.timetracker.time";
     static final String MULTIPLE_RECORD_MIME_TYPE = "vnd.android.cursor.dir/vnd.enew.timetracker.time";
     SQLiteDatabase db;
-    CategoryHelper categoryHelper;
+    CategoryTable categoryTable;
 
     @Override
     public boolean onCreate() {
-        categoryHelper = new CategoryHelper(getContext());
+        categoryTable = new CategoryTable(getContext());
         return true;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        db = categoryHelper.getReadableDatabase();
+        db = categoryTable.getReadableDatabase();
         Cursor cursor = db.query(Constants.TABLE_CATEGORY, projection, selection, selectionArgs, null, null, sortOrder);
 
         return cursor;
@@ -49,7 +49,7 @@ public class BookProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        db = categoryHelper.getWritableDatabase();
+        db = categoryTable.getWritableDatabase();
         long id = db.insertWithOnConflict(Constants.TABLE_CATEGORY, null, values, SQLiteDatabase.CONFLICT_IGNORE);
         if (id != -1) {
             uri = Uri.withAppendedPath(uri, String.valueOf(id));
