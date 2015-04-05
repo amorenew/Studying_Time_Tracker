@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.enew.timetracker.R;
-import com.enew.timetracker.database.handler.CategoryTable;
 import com.enew.timetracker.database.model.Category;
+import com.enew.timetracker.database.table.CategoryTable;
 
 import java.util.ArrayList;
 
@@ -51,13 +51,14 @@ public class HomeActivity extends Activity {
         long d3ID = categoryTable.add(d3);
         categoryTable.add(d4);
         categoryTable.add(d5);
-
+        Category categoryDelete = new Category();
+        categoryDelete.setId(d3ID);
         long y = categoryTable.add(new Category("omega"));
         Log.d("table category:", "category ID:" + y);
         d2.setName("poo2 renamed");
         categoryTable.update(d2);
-        categoryTable.delete(d3ID);
-        ArrayList<Category> categories = categoryTable.getCategories();
+        categoryTable.delete(categoryDelete);
+        ArrayList<Category> categories = categoryTable.getAll();
 
         for (Category category : categories) {
             Log.d("table category:", "category ID:" + category.getId() + " Name:" + category.getName());

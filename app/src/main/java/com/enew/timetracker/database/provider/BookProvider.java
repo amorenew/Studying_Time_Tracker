@@ -8,8 +8,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.enew.timetracker.database.Constants;
-import com.enew.timetracker.database.handler.CategoryTable;
+import com.enew.timetracker.database.table.CategoryTable;
 
 /**
  * Created by amorenew on 2/27/2015.
@@ -31,7 +30,7 @@ public class BookProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         db = categoryTable.getReadableDatabase();
-        Cursor cursor = db.query(Constants.TABLE_CATEGORY, projection, selection, selectionArgs, null, null, sortOrder);
+        Cursor cursor = db.query(CategoryTable.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
 
         return cursor;
     }
@@ -50,7 +49,7 @@ public class BookProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         db = categoryTable.getWritableDatabase();
-        long id = db.insertWithOnConflict(Constants.TABLE_CATEGORY, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        long id = db.insertWithOnConflict(CategoryTable.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
         if (id != -1) {
             uri = Uri.withAppendedPath(uri, String.valueOf(id));
         }
