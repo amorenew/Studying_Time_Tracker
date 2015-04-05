@@ -11,8 +11,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.enew.timetracker.database.Constants;
-import com.enew.timetracker.database.handler.CategoryTable;
+import com.enew.timetracker.database.table.CategoryTable;
 
 import java.util.HashMap;
 
@@ -22,7 +21,7 @@ import java.util.HashMap;
 public class TimeProvider extends ContentProvider {
     // fields for my content provider
     static final String AUTHORITY = "com.enew.timetracker.provider";
-    static final String URL = "content://" + AUTHORITY + "/" + Constants.TABLE_CATEGORY;
+    static final String URL = "content://" + AUTHORITY + "/" + CategoryTable.TABLE_NAME;
     static final Uri CONTENT_URI = Uri.parse(URL);
     static final String SINGLE_RECORD_MIME_TYPE = "vnd.android.cursor.item/vnd.enew.timetracker.time";
     static final String MULTIPLE_RECORD_MIME_TYPE = "vnd.android.cursor.dir/vnd.enew.timetracker.time";
@@ -37,8 +36,8 @@ public class TimeProvider extends ContentProvider {
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(AUTHORITY, Constants.TABLE_CATEGORY, CATEGORY);
-        uriMatcher.addURI(AUTHORITY, Constants.TABLE_CATEGORY + "/#", CATEGORY_NAME);
+        uriMatcher.addURI(AUTHORITY, CategoryTable.TABLE_NAME, CATEGORY);
+        uriMatcher.addURI(AUTHORITY, CategoryTable.TABLE_NAME + "/#", CATEGORY_NAME);
     }
 
     CategoryTable categoryTable;
@@ -62,21 +61,21 @@ public class TimeProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         // the TABLE_NAME to query on
-        queryBuilder.setTables(Constants.TABLE_CATEGORY);
+        queryBuilder.setTables(CategoryTable.TABLE_NAME);
         switch (uriMatcher.match(uri)) {
             // maps all database column names
             case CATEGORY:
                 queryBuilder.setProjectionMap(BirthMap);
                 break;
             case CATEGORY_NAME:
-                queryBuilder.appendWhere(Constants.NAME + "=" + uri.getLastPathSegment());
+                queryBuilder.appendWhere(CategoryTable.NAME_KEY + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
         if (sortOrder == null || sortOrder == "") {
             // No sorting-> sort on names by default
-            sortOrder = Constants.NAME;
+            sortOrder = CategoryTable.NAME_KEY;
         }
         Cursor cursor = queryBuilder.query(database, projection, selection,
                 selectionArgs, null, null, sortOrder);

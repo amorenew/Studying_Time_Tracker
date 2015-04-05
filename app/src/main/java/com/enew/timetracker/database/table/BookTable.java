@@ -1,4 +1,4 @@
-package com.enew.timetracker.database.handler;
+package com.enew.timetracker.database.table;
 
 import android.content.ContentValues;
 import android.content.Context;
