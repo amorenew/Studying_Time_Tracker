@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by amorenew on 2/25/2015.
  */
-public class LevelTable extends SQLiteOpenHelper implements table<Level> {
+public class LevelTable extends SQLiteOpenHelper implements Table<Level> {
 
     public static final String TABLE_NAME = "level";
     public static final String KEY_ID = "id";

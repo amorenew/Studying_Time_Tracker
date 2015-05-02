@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by amorenew on 2/25/2015.
  */
-public class CategoryTable extends SQLiteOpenHelper implements table<Category> {
+public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
 
     public static final String TABLE_NAME = "category";
     public static final String KEY_ID = "id";

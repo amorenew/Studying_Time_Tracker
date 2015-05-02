@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * this class will handle all operation related to book table
  * Created by amar.d on 3/2/2015.
  */
-public class BookTable extends SQLiteOpenHelper implements table<Book> {
+public class BookTable extends SQLiteOpenHelper implements Table<Book> {
 
     private static final String TABLE_NAME = "book";
     private static final String KEY_ID = "id";
