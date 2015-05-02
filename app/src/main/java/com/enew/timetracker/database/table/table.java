@@ -13,6 +13,8 @@ public interface table<Object> {
 
     long update(Object object);
 
+    Object get(int id);
+
     ArrayList<Object> getAll();
 
     int getCount();
