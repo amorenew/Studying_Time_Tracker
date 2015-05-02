@@ -25,8 +25,12 @@
         </activity>
 
         <provider
-            android:name="com.enew.timetracker.database.provider.TimeProvider"
+            android:name=".database.provider.TimeProvider"
             android:authorities="TimeTracker" />
+
+        <activity
+            android:name=".activity.TestCategoryActivity"
+            android:label="@string/title_activity_test_category"></activity>
     </application>
 
 </manifest>

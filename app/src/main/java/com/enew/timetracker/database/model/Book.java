@@ -7,8 +7,9 @@ public class Book {
 
     int id;
     String name;
-    int category_id;
-    int level_id;
+    int isbnNumber;
+    int categoryId;
+    int levelId;
 
     public int getId() {
         return id;
@@ -26,19 +27,27 @@ public class Book {
         this.name = name;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getIsbnNumber() {
+        return isbnNumber;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setIsbnNumber(int isbnNumber) {
+        this.isbnNumber = isbnNumber;
     }
 
-    public int getLevel_id() {
-        return level_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setLevel_id(int level_id) {
-        this.level_id = level_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(int levelId) {
+        this.levelId = levelId;
     }
 }

@@ -8,23 +8,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.enew.timetracker.database.Constants;
-import com.enew.timetracker.database.model.Category;
+import com.enew.timetracker.database.model.Level;
 
 import java.util.ArrayList;
 
 /**
  * Created by amorenew on 2/25/2015.
  */
-public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
+public class LevelTable extends SQLiteOpenHelper implements Table<Level> {
 
-    public static final String TABLE_NAME = "category";
+    public static final String TABLE_NAME = "level";
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
 
     public static final String CREATE_TABLE = "create table if not exists " +
             TABLE_NAME + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_NAME + " text not null unique); ";
 
-    public CategoryTable(Context context) {
+    public LevelTable(Context context) {
         super(context, Constants.DATABASE_NAME, null, Constants.VERSION);
     }
 
@@ -35,7 +35,7 @@ public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(CategoryTable.class.getName(),
+        Log.w(LevelTable.class.getName(),
                 "Upgrading database from version " + oldVersion + " to "
                         + newVersion + ". Old data will be destroyed");
         db.execSQL("drop table " + TABLE_NAME);
@@ -43,16 +43,16 @@ public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
     }
 
     @Override
-    public long add(Category category) {
+    public long add(Level level) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         ContentValues contentValues = new ContentValues();
         long id = -1;
-        if (category != null && !category.getName().isEmpty()) {
-            contentValues.put(KEY_NAME, category.getName());
+        if (level != null && !level.getName().isEmpty()) {
+            contentValues.put(KEY_NAME, level.getName());
             id = db.insertWithOnConflict(TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
             if (id > 0) {
-                category.setId((int) id);
+                level.setId((int) id);
             }
         }
         db.setTransactionSuccessful();
@@ -62,12 +62,12 @@ public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
     }
 
     @Override
-    public long delete(Category category) {
+    public long delete(Level level) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         long id = -1;
-        if (category != null && category.getId() > 0) {
-            id = db.delete(TABLE_NAME, KEY_ID + "=" + category.getId(), null);
+        if (level != null && level.getId() > 0) {
+            id = db.delete(TABLE_NAME, KEY_ID + "=" + level.getId(), null);
         }
         db.setTransactionSuccessful();
         db.endTransaction();
@@ -76,14 +76,14 @@ public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
     }
 
     @Override
-    public long update(Category category) {
+    public long update(Level level) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         ContentValues values = new ContentValues();
         long id = -1;
-        if (category != null && category.getId() > 0 && !category.getName().isEmpty()) {
-            values.put(KEY_NAME, category.getName());
-            id = db.updateWithOnConflict(TABLE_NAME, values, KEY_ID + "=" + category.getId(), null, SQLiteDatabase.CONFLICT_IGNORE);
+        if (level != null && level.getId() > 0 && !level.getName().isEmpty()) {
+            values.put(KEY_NAME, level.getName());
+            id = db.update(TABLE_NAME, values, KEY_ID + "=" + level.getId(), null);
         }
         db.setTransactionSuccessful();
         db.endTransaction();
@@ -91,28 +91,28 @@ public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
         return id;
     }
 
+
     @Override
-    public Category get(int id) {
+    public Level get(int id) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         String selectQuery = "SELECT *FROM " + TABLE_NAME + " where " + KEY_ID + "=" + id;
         Cursor cursor = db.rawQuery(selectQuery, null);
-        Category category = null;
+        Level level = null;
         if (cursor != null && cursor.moveToFirst()) {
-            category = new Category();
-            category.setId(cursor.getInt(0));
-            category.setName(cursor.getString(1));
+            level = new Level();
+            level.setId(cursor.getInt(0));
+            level.setName(cursor.getString(1));
         }
         db.setTransactionSuccessful();
         db.endTransaction();
         db.close();
-        return category;
+        return level;
     }
 
-
     @Override
-    public ArrayList<Category> getAll() {
-        ArrayList<Category> categories = new ArrayList<Category>();
+    public ArrayList<Level> getAll() {
+        ArrayList<Level> levels = new ArrayList<Level>();
         String selectQuery = "SELECT *FROM " + TABLE_NAME;
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
@@ -120,18 +120,19 @@ public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                Category category = new Category();
-                category.setId(cursor.getInt(0));
-                category.setName(cursor.getString(1));
-                categories.add(category);
+                Level level = new Level();
+                level.setId(cursor.getInt(0));
+                level.setName(cursor.getString(1));
+                levels.add(level);
             } while (cursor.moveToNext());
         }
         db.setTransactionSuccessful();
         db.endTransaction();
         cursor.close();
         db.close();
-        return categories;
+        return levels;
     }
+
 
     @Override
     public int getCount() {

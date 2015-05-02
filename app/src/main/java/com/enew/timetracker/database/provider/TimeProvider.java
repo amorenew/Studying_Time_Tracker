@@ -68,14 +68,14 @@ public class TimeProvider extends ContentProvider {
                 queryBuilder.setProjectionMap(BirthMap);
                 break;
             case CATEGORY_NAME:
-                queryBuilder.appendWhere(CategoryTable.NAME_KEY + "=" + uri.getLastPathSegment());
+                queryBuilder.appendWhere(CategoryTable.KEY_NAME + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
         if (sortOrder == null || sortOrder.isEmpty()) {
             // No sorting-> sort on names by default
-            sortOrder = CategoryTable.NAME_KEY;
+            sortOrder = CategoryTable.KEY_NAME;
         }
         Cursor cursor = queryBuilder.query(database, projection, selection,
                 selectionArgs, null, null, sortOrder);

@@ -8,6 +8,13 @@ public class Level {
     int id;
     String name;
 
+    public Level() {
+    }
+
+    public Level(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

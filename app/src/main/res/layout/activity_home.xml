@@ -8,49 +8,47 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".HomeActivity"
-    android:id="@+id/homeLayout">
+    android:id="@+id/homeLayout"
+    android:gravity="center">
 
-    <EditText
-        android:id="@+id/etBookTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Book Title"
-        android:textColorHint="#ff4d6dff" />
-
-    <EditText
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/etBookCategory"
-        android:hint="Book Category"
-        android:textColorHint="#ff4d6dff" />
+        android:text="Test Category"
+        android:id="@+id/btnCategory"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
 
-    <EditText
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/etCategoryLevel"
-        android:hint="Category Level"
-        android:textColorHint="#ff4d6dff" />
+        android:text="Test Level"
+        android:id="@+id/btnLevel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
 
-    <EditText
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/etCategoryLevelName"
-        android:hint="Category Level Name"
-        android:textColorHint="#ff4d6dff" />
+        android:text="Test Book"
+        android:id="@+id/btnBook"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <Button
-            android:id="@+id/btnAddBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Add Book"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Chapter"
+        android:id="@+id/btnChapter"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp" />
 
 </LinearLayout>
