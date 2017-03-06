@@ -15,5 +15,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        //for dbflow
+        maven { url "https://www.jitpack.io" }
+
     }
 }
