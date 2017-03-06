@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/b22"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/n_book"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_bright"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout5"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout5"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout5"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout5" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="delete_Book"
+        android:text="عرض"
+        app:layout_constraintBottom_toTopOf="@+id/n_book"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout5"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout5"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout5" />
+</android.support.constraint.ConstraintLayout>

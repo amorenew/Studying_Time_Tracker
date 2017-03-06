@@ -10,14 +10,14 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".activity.HomeActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!--<activity-->
+        <!--android:name=".activity.HomeActivity"-->
+        <!--android:label="@string/app_name" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN" />-->
+        <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
         <activity
             android:name=".activity.AddChapterActivity"
             android:label="@string/title_activity_add_chapter" >
@@ -30,6 +30,18 @@
         <activity
             android:name=".activity.TestCategoryActivity"
             android:label="@string/title_activity_test_category"></activity>
+        <activity android:name=".others.home">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".others.CardViewActivity"></activity>
+        <activity android:name=".others.regstration"></activity>
+        <activity android:name=".others.delete_book"></activity>
+        <activity android:name=".others.edit_page"></activity>
+
     </application>
 
 </manifest>

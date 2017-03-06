@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="حزف كتاب"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تسجيل كتاب جديد"
+
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Back"
+        android:text="تعديل كتاب"
+        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="عرض الكتب"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout2"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+</android.support.constraint.ConstraintLayout>
