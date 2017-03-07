@@ -1,4 +1,4 @@
-package com.enew.timetracker.activity;
+package com.enew.timetracker.modules;
 
 import android.app.Activity;
 import android.content.Intent;

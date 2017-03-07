@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.enew.timetracker" >
+    package="com.enew.timetracker">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,39 +9,41 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <!--<activity-->
-        <!--android:name=".activity.HomeActivity"-->
-        <!--android:label="@string/app_name" >-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN" />-->
-        <!--<category android:name="android.intent.category.LAUNCHER" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
+        android:theme="@style/AppTheme">
+
+        <!-- <activity -->
+        <!-- android:name=".activity.HomeActivity" -->
+        <!-- android:label="@string/app_name" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
-            android:name=".activity.AddChapterActivity"
-            android:label="@string/title_activity_add_chapter" >
-        </activity>
+            android:name=".modules.AddChapterActivity"
+            android:label="@string/title_activity_add_chapter" />
 
         <provider
             android:name=".database.provider.TimeProvider"
             android:authorities="TimeTracker" />
 
         <activity
-            android:name=".activity.TestCategoryActivity"
-            android:label="@string/title_activity_test_category"></activity>
+            android:name=".modules.TestCategoryActivity"
+            android:label="@string/title_activity_test_category" />
         <activity android:name=".others.home">
+
+        </activity>
+        <activity android:name=".others.CardViewActivity" />
+        <activity android:name=".others.regstration" />
+        <activity android:name=".others.delete_book" />
+        <activity android:name=".others.edit_page" />
+        <activity android:name=".modules.category.CategoryActivity" />
+        <activity android:name=".modules.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".others.CardViewActivity"></activity>
-        <activity android:name=".others.regstration"></activity>
-        <activity android:name=".others.delete_book"></activity>
-        <activity android:name=".others.edit_page"></activity>
-
     </application>
 
 </manifest>
