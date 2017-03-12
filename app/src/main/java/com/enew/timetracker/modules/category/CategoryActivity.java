@@ -28,7 +28,7 @@ public class CategoryActivity extends BaseActivity {
                     .toComparison();
         }
     };
-
+    private CategoriesAdapter categoriesAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +54,10 @@ public class CategoryActivity extends BaseActivity {
                 itemClick(position);
             }
         }));
-
+        categoriesAdapter = new CategoriesAdapter(getApplicationContext(), CATEGORY_COMPARATOR);
+//        Collections.sort(models, CATEGORY_COMPARATOR);
+//        categoriesAdapter.edit().add(modelsa).commit();
+        rvResults.setAdapter(categoriesAdapter);
     }
 
     private void itemClick(int position) {
