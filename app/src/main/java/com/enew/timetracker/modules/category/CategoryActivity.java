@@ -10,12 +10,24 @@ import android.widget.Toast;
 import com.enew.timetracker.R;
 import com.enew.timetracker.modules.BaseActivity;
 
+import org.apache.commons.lang3.builder.CompareToBuilder;
+
+import java.util.Comparator;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CategoryActivity extends BaseActivity {
     @BindView(R.id.rvResults)
     protected RecyclerView rvResults;
+    Comparator<CategoryModel> CATEGORY_COMPARATOR = new Comparator<CategoryModel>() {
+        @Override
+        public int compare(CategoryModel a, CategoryModel b) {
+            return new CompareToBuilder()
+                    .append(a.getName(), b.getName())
+                    .toComparison();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

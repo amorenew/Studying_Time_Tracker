@@ -10,7 +10,7 @@ import com.raizlabs.android.dbflow.annotation.Unique;
  */
 
 @Table(database = TrackDatabase.class)
-public class CategoryModel {
+public class CategoryModel implements SortedListAdapter.ViewModel {
 
     @PrimaryKey(autoincrement = true)
     private long id;
@@ -32,5 +32,18 @@ public class CategoryModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoryModel that = (CategoryModel) o;
+        return getName() != null ? getName().equals(that.getName()) : that.getName() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getName() != null ? getName().hashCode() : 0;
     }
 }
