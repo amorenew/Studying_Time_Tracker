@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.enew.timetracker.R;
@@ -23,6 +26,8 @@ public class CategoryActivity extends BaseActivity {
 
     @BindView(R.id.rvResults)
     protected RecyclerView rvResults;
+    @BindView(R.id.etCategory)
+    protected EditText etCategory;
 
     Comparator<CategoryModel> CATEGORY_COMPARATOR = new Comparator<CategoryModel>() {
         @Override
@@ -32,7 +37,7 @@ public class CategoryActivity extends BaseActivity {
                     .toComparison();
         }
     };
-
+    private String category;
     private CategoriesAdapter categoriesAdapter;
 
     @Override
@@ -65,6 +70,23 @@ public class CategoryActivity extends BaseActivity {
         Collections.sort(CategoryModel.getCategories(), CATEGORY_COMPARATOR);
         categoriesAdapter.edit().add(CategoryModel.getCategories()).commit();
         rvResults.setAdapter(categoriesAdapter);
+        etCategory.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                category = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void itemClick(int position) {
@@ -74,11 +96,10 @@ public class CategoryActivity extends BaseActivity {
     @OnClick(R.id.addCategory)
     public void addCategory(View view) {
         CategoryModel model = new CategoryModel();
-        model.setName("category");
+        model.setName(category);
         model.save();
-        Collections.sort(CategoryModel.getCategories(), CATEGORY_COMPARATOR);
-        categoriesAdapter.edit().removeAll().commit();
-        categoriesAdapter.edit().add(CategoryModel.getCategories()).commit();
-        rvResults.setAdapter(categoriesAdapter);
+        categoriesAdapter.edit().add(model).commit();
+        categoriesAdapter.notifyDataSetChanged();
     }
+
 }
