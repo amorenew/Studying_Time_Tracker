@@ -12,14 +12,18 @@ import com.enew.timetracker.modules.BaseActivity;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
+import java.util.Collections;
 import java.util.Comparator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CategoryActivity extends BaseActivity {
+
     @BindView(R.id.rvResults)
     protected RecyclerView rvResults;
+
     Comparator<CategoryModel> CATEGORY_COMPARATOR = new Comparator<CategoryModel>() {
         @Override
         public int compare(CategoryModel a, CategoryModel b) {
@@ -28,7 +32,9 @@ public class CategoryActivity extends BaseActivity {
                     .toComparison();
         }
     };
+
     private CategoriesAdapter categoriesAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +44,7 @@ public class CategoryActivity extends BaseActivity {
         addToolBar();
         addBackButtonWhite(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Toast.makeText(CategoryActivity.this, "Back", Toast.LENGTH_SHORT).show();
             }
         });
@@ -54,13 +60,25 @@ public class CategoryActivity extends BaseActivity {
                 itemClick(position);
             }
         }));
+
         categoriesAdapter = new CategoriesAdapter(getApplicationContext(), CATEGORY_COMPARATOR);
-//        Collections.sort(models, CATEGORY_COMPARATOR);
-//        categoriesAdapter.edit().add(modelsa).commit();
+        Collections.sort(CategoryModel.getCategories(), CATEGORY_COMPARATOR);
+        categoriesAdapter.edit().add(CategoryModel.getCategories()).commit();
         rvResults.setAdapter(categoriesAdapter);
     }
 
     private void itemClick(int position) {
         Toast.makeText(this, "Position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.addCategory)
+    public void addCategory(View view) {
+        CategoryModel model = new CategoryModel();
+        model.setName("category");
+        model.save();
+        Collections.sort(CategoryModel.getCategories(), CATEGORY_COMPARATOR);
+        categoriesAdapter.edit().removeAll().commit();
+        categoriesAdapter.edit().add(CategoryModel.getCategories()).commit();
+        rvResults.setAdapter(categoriesAdapter);
     }
 }
