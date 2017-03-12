@@ -1,18 +1,28 @@
 package com.enew.timetracker.modules.category;
 
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
 import com.enew.timetracker.R;
 import com.enew.timetracker.modules.BaseActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CategoryActivity extends BaseActivity {
+    @BindView(R.id.rvResults)
+    protected RecyclerView rvResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        ButterKnife.bind(this);
+
         addToolBar();
         addBackButtonWhite(new View.OnClickListener() {
             @Override
@@ -21,5 +31,21 @@ public class CategoryActivity extends BaseActivity {
             }
         });
         setToolbarTitle("Category");
+
+        rvResults.setItemAnimator(new DefaultItemAnimator());
+        rvResults.addItemDecoration(new SpaceItemDecoration(0, 0, 0, 0));
+        rvResults.setHasFixedSize(false);
+        rvResults.setLayoutManager(new LinearLayoutManager(this));
+        rvResults.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                itemClick(position);
+            }
+        }));
+
+    }
+
+    private void itemClick(int position) {
+        Toast.makeText(this, "Position: " + position, Toast.LENGTH_SHORT).show();
     }
 }

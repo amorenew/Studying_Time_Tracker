@@ -30,6 +30,10 @@ dependencies {
     compile 'com.android.support:design:25.2.0'
     compile 'com.android.support:cardview-v7:25.2.0'
     compile 'com.android.support:recyclerview-v7:25.2.0'
-    compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    //for compare util
+    compile 'org.apache.commons:commons-lang3:3.5'
+
 }
