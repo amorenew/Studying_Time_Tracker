@@ -1,7 +1,7 @@
 package com.enew.timetracker.modules.category.models;
 
-import com.enew.timetracker.modules.commons.database.TrackDatabase;
-import com.enew.timetracker.modules.commons.presentation.presenter.SortedListAdapter;
+import com.enew.timetracker.commons.database.TrackDatabase;
+import com.enew.timetracker.commons.presentation.presenter.SortedListAdapter;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ConflictAction;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;

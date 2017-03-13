@@ -4,8 +4,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.enew.timetracker.R;
+import com.enew.timetracker.commons.presentation.presenter.SortedListAdapter;
 import com.enew.timetracker.modules.category.models.CategoryModel;
-import com.enew.timetracker.modules.commons.presentation.presenter.SortedListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

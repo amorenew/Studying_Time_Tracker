@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.commons.presentation.presenter;
+package com.enew.timetracker.commons.presentation.presenter;
 
 /**
  * Created by TCIG_PC_54 on 3/12/2017.

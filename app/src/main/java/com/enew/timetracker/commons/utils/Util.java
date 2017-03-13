@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.commons;
+package com.enew.timetracker.commons.utils;
 
 import android.app.Activity;
 import android.content.Context;

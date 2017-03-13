@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category;
+package com.enew.timetracker;
 
 import android.app.Application;
 

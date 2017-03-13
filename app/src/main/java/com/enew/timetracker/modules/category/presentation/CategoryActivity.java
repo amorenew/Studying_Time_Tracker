@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.enew.timetracker.R;
+import com.enew.timetracker.commons.presentation.BaseActivity;
+import com.enew.timetracker.commons.presentation.presenter.RecyclerItemClickListener;
+import com.enew.timetracker.commons.presentation.presenter.SpaceItemDecoration;
 import com.enew.timetracker.modules.category.models.CategoryModel;
-import com.enew.timetracker.modules.commons.presentation.BaseActivity;
-import com.enew.timetracker.modules.commons.presentation.presenter.RecyclerItemClickListener;
-import com.enew.timetracker.modules.commons.presentation.presenter.SpaceItemDecoration;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 

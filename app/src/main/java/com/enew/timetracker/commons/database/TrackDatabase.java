@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.commons.database;
+package com.enew.timetracker.commons.database;
 
 /**
  * Created by TCIG_PC_54 on 3/12/2017.
