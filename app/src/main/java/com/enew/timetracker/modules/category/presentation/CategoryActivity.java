@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category;
+package com.enew.timetracker.modules.category.presentation;
 
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.enew.timetracker.R;
-import com.enew.timetracker.modules.BaseActivity;
+import com.enew.timetracker.modules.category.models.CategoryModel;
+import com.enew.timetracker.modules.commons.presentation.BaseActivity;
+import com.enew.timetracker.modules.commons.presentation.presenter.RecyclerItemClickListener;
+import com.enew.timetracker.modules.commons.presentation.presenter.SpaceItemDecoration;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 

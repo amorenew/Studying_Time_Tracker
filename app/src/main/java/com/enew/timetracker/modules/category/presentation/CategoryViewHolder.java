@@ -1,9 +1,11 @@
-package com.enew.timetracker.modules.category;
+package com.enew.timetracker.modules.category.presentation;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.enew.timetracker.R;
+import com.enew.timetracker.modules.category.models.CategoryModel;
+import com.enew.timetracker.modules.commons.presentation.presenter.SortedListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

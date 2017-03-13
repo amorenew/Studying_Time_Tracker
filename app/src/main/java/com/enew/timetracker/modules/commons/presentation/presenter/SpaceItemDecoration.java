@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category;
+package com.enew.timetracker.modules.commons.presentation.presenter;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

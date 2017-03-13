@@ -1,4 +1,4 @@
-package com.enew.timetracker.database.provider;
+package com.enew.timetracker.old.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -11,7 +11,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.enew.timetracker.database.table.CategoryTable;
+import com.enew.timetracker.old.table.CategoryTable;
 
 import java.util.HashMap;
 
@@ -49,11 +49,7 @@ public class TimeProvider extends ContentProvider {
         categoryTable = new CategoryTable(context);
         // permissions to be writable
         database = categoryTable.getWritableDatabase();
-        if (database == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return database != null;
     }
 
     @Override

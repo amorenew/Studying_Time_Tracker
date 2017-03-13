@@ -1,4 +1,4 @@
-package com.enew.timetracker.database.table;
+package com.enew.timetracker.old.table;
 
 import java.util.ArrayList;
 

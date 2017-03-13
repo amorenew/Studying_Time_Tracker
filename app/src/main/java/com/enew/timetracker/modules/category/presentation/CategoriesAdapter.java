@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category;
+package com.enew.timetracker.modules.category.presentation;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.enew.timetracker.R;
+import com.enew.timetracker.modules.category.models.CategoryModel;
+import com.enew.timetracker.modules.commons.presentation.presenter.SortedListAdapter;
 
 import java.util.Comparator;
 

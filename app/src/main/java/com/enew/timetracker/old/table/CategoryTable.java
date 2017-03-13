@@ -1,4 +1,4 @@
-package com.enew.timetracker.database.table;
+package com.enew.timetracker.old.table;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,29 +7,24 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.enew.timetracker.database.Constants;
-import com.enew.timetracker.database.model.Chapter;
+import com.enew.timetracker.old.Constants;
+import com.enew.timetracker.old.model.Category;
 
 import java.util.ArrayList;
 
 /**
  * Created by amorenew on 2/25/2015.
  */
-public class ChapterTable extends SQLiteOpenHelper implements Table<Chapter> {
+public class CategoryTable extends SQLiteOpenHelper implements Table<Category> {
 
-    public static final String TABLE_NAME = "chapter";
+    public static final String TABLE_NAME = "category";
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
-    public static final String KEY_NUMBER = "number";
-    public static final String KEY_PAGE_START = "page_start";
-    public static final String KEY_PAGE_END = "page_end";
-    public static final String KEY_BOOK_ID = "book_id";
 
     public static final String CREATE_TABLE = "create table if not exists " +
-            TABLE_NAME + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_NAME + " text not null unique," +
-            KEY_NUMBER + " integer, " + KEY_PAGE_START + " integer," + KEY_PAGE_END + " integer, " + KEY_BOOK_ID + " integer ); ";
+            TABLE_NAME + " (" + KEY_ID + " integer primary key autoincrement, " + KEY_NAME + " text not null unique); ";
 
-    public ChapterTable(Context context) {
+    public CategoryTable(Context context) {
         super(context, Constants.DATABASE_NAME, null, Constants.VERSION);
     }
 
@@ -40,7 +35,7 @@ public class ChapterTable extends SQLiteOpenHelper implements Table<Chapter> {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(ChapterTable.class.getName(),
+        Log.w(CategoryTable.class.getName(),
                 "Upgrading database from version " + oldVersion + " to "
                         + newVersion + ". Old data will be destroyed");
         db.execSQL("drop table " + TABLE_NAME);
@@ -48,21 +43,16 @@ public class ChapterTable extends SQLiteOpenHelper implements Table<Chapter> {
     }
 
     @Override
-    public long add(Chapter chapter) {
+    public long add(Category category) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         ContentValues contentValues = new ContentValues();
         long id = -1;
-        if (chapter != null && !chapter.getName().isEmpty()) {
-            contentValues.put(KEY_NAME, chapter.getName());
-            contentValues.put(KEY_NUMBER, chapter.getName());
-            contentValues.put(KEY_PAGE_START, chapter.getName());
-            contentValues.put(KEY_PAGE_END, chapter.getName());
-            contentValues.put(KEY_BOOK_ID, chapter.getName());
-
+        if (category != null && !category.getName().isEmpty()) {
+            contentValues.put(KEY_NAME, category.getName());
             id = db.insertWithOnConflict(TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
             if (id > 0) {
-                chapter.setId((int) id);
+                category.setId((int) id);
             }
         }
         db.setTransactionSuccessful();
@@ -72,12 +62,12 @@ public class ChapterTable extends SQLiteOpenHelper implements Table<Chapter> {
     }
 
     @Override
-    public long delete(Chapter chapter) {
+    public long delete(Category category) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         long id = -1;
-        if (chapter != null && chapter.getId() > 0) {
-            id = db.delete(TABLE_NAME, KEY_ID + "=" + chapter.getId(), null);
+        if (category != null && category.getId() > 0) {
+            id = db.delete(TABLE_NAME, KEY_ID + "=" + category.getId(), null);
         }
         db.setTransactionSuccessful();
         db.endTransaction();
@@ -86,14 +76,14 @@ public class ChapterTable extends SQLiteOpenHelper implements Table<Chapter> {
     }
 
     @Override
-    public long update(Chapter chapter) {
+    public long update(Category category) {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         ContentValues values = new ContentValues();
         long id = -1;
-        if (chapter != null && chapter.getId() > 0 && !chapter.getName().isEmpty()) {
-            values.put(KEY_NAME, chapter.getName());
-            id = db.update(TABLE_NAME, values, KEY_ID + "=" + chapter.getId(), null);
+        if (category != null && category.getId() > 0 && !category.getName().isEmpty()) {
+            values.put(KEY_NAME, category.getName());
+            id = db.updateWithOnConflict(TABLE_NAME, values, KEY_ID + "=" + category.getId(), null, SQLiteDatabase.CONFLICT_IGNORE);
         }
         db.setTransactionSuccessful();
         db.endTransaction();
@@ -102,14 +92,27 @@ public class ChapterTable extends SQLiteOpenHelper implements Table<Chapter> {
     }
 
     @Override
-    public Chapter get(int id) {
-        return null;
+    public Category get(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        String selectQuery = "SELECT *FROM " + TABLE_NAME + " where " + KEY_ID + "=" + id;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Category category = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            category = new Category();
+            category.setId(cursor.getInt(0));
+            category.setName(cursor.getString(1));
+        }
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        db.close();
+        return category;
     }
 
 
     @Override
-    public ArrayList<Chapter> getAll() {
-        ArrayList<Chapter> chapters = new ArrayList<Chapter>();
+    public ArrayList<Category> getAll() {
+        ArrayList<Category> categories = new ArrayList<Category>();
         String selectQuery = "SELECT *FROM " + TABLE_NAME;
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
@@ -117,21 +120,17 @@ public class ChapterTable extends SQLiteOpenHelper implements Table<Chapter> {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                Chapter chapter = new Chapter();
-                chapter.setId(cursor.getInt(0));
-                chapter.setName(cursor.getString(1));
-                chapter.setNumber(cursor.getInt(2));
-                chapter.setPage_start(cursor.getInt(3));
-                chapter.setPage_end(cursor.getInt(4));
-                chapter.setBook_id(cursor.getInt(5));
-                chapters.add(chapter);
+                Category category = new Category();
+                category.setId(cursor.getInt(0));
+                category.setName(cursor.getString(1));
+                categories.add(category);
             } while (cursor.moveToNext());
         }
         db.setTransactionSuccessful();
         db.endTransaction();
         cursor.close();
         db.close();
-        return chapters;
+        return categories;
     }
 
     @Override

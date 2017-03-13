@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/back_grad"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.enew.timetracker.modules.category.CategoryActivity">
+    tools:context="com.enew.timetracker.modules.category.presentation.CategoryActivity">
 
     <include
         android:id="@+id/appbar"

@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules;
+package com.enew.timetracker.modules.commons.presentation;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.enew.timetracker.R;
+import com.enew.timetracker.modules.commons.Util;
 
 /**
  * Created by TCIG_PC_54 on 3/7/2017.

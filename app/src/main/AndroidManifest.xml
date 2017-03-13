@@ -25,7 +25,7 @@
             android:label="@string/title_activity_add_chapter" />
 
         <provider
-            android:name=".database.provider.TimeProvider"
+            android:name=".old.provider.TimeProvider"
             android:authorities="TimeTracker" />
 
         <activity
@@ -38,7 +38,7 @@
         <activity android:name=".others.regstration" />
         <activity android:name=".others.delete_book" />
         <activity android:name=".others.edit_page" />
-        <activity android:name=".modules.category.CategoryActivity" />
+        <activity android:name=".modules.category.presentation.CategoryActivity" />
         <activity android:name=".modules.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

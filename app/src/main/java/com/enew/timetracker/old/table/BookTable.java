@@ -1,4 +1,4 @@
-package com.enew.timetracker.database.table;
+package com.enew.timetracker.old.table;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.enew.timetracker.database.Constants;
-import com.enew.timetracker.database.model.Book;
+import com.enew.timetracker.old.Constants;
+import com.enew.timetracker.old.model.Book;
 
 import java.util.ArrayList;
 

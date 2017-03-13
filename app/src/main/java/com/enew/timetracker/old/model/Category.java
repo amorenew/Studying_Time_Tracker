@@ -1,17 +1,16 @@
-package com.enew.timetracker.database.model;
+package com.enew.timetracker.old.model;
 
 /**
- * Created by amorenew on 2/25/2015.
+ * Created by amorenew on 2/15/2015.
  */
-public class Level {
+public class Category {
+    private int id;
+    private String name;
 
-    int id;
-    String name;
-
-    public Level() {
+    public Category() {
     }
 
-    public Level(String name) {
+    public Category(String name) {
         this.name = name;
     }
 

@@ -1,4 +1,4 @@
-package com.enew.timetracker.database.model;
+package com.enew.timetracker.old.model;
 
 /**
  * Created by amorenew on 2/15/2015.

@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.enew.timetracker.R;
-import com.enew.timetracker.modules.category.CategoryActivity;
+import com.enew.timetracker.modules.category.presentation.CategoryActivity;
 
 public class SplashActivity extends AppCompatActivity {
     // Splash screen timer
