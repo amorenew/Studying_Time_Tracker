@@ -17,7 +17,7 @@
  * Mohit Gupt (https://github.com/mohitgupt)
  *
  */
-package com.enew.timetracker.others;
+package com.enew.timetracker.old.others;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;

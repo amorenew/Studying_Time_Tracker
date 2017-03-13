@@ -18,7 +18,7 @@
  *
  */
 
-package com.enew.timetracker.others;
+package com.enew.timetracker.old.others;
 
 public class DataObject {
     private String mText1;

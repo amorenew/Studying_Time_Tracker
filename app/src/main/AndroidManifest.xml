@@ -31,13 +31,13 @@
         <activity
             android:name=".modules.TestCategoryActivity"
             android:label="@string/title_activity_test_category" />
-        <activity android:name=".others.home">
+        <activity android:name=".old.others.home">
 
         </activity>
-        <activity android:name=".others.CardViewActivity" />
-        <activity android:name=".others.regstration" />
-        <activity android:name=".others.delete_book" />
-        <activity android:name=".others.edit_page" />
+        <activity android:name=".old.others.CardViewActivity" />
+        <activity android:name=".old.others.regstration" />
+        <activity android:name=".old.others.delete_book" />
+        <activity android:name=".old.others.edit_page" />
         <activity android:name=".modules.category.presentation.CategoryActivity" />
         <activity android:name=".modules.SplashActivity">
             <intent-filter>
