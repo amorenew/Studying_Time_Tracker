@@ -15,6 +15,7 @@ import com.enew.timetracker.commons.presentation.BaseActivity;
 import com.enew.timetracker.commons.presentation.presenter.RecyclerItemClickListener;
 import com.enew.timetracker.commons.presentation.presenter.SpaceItemDecoration;
 import com.enew.timetracker.modules.category.models.CategoryModel;
+import com.enew.timetracker.modules.category.presentation.presenter.CategoriesAdapter;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 

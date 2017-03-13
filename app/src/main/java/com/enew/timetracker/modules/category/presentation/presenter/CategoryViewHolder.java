@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category.presentation;
+package com.enew.timetracker.modules.category.presentation.presenter;
 
 import android.view.View;
 import android.widget.TextView;
