@@ -20,8 +20,8 @@ public class CategoryViewHolder extends SortedListAdapter.ViewHolder<CategoryMod
 
     @BindView(R.id.tvName)
     TextView tvName;
-    @BindView(R.id.textViewOptions)
-    View buttonViewOption;
+    @BindView(R.id.subMenu)
+    View subMenu;
 
     // public android.view.View buttonViewOption;
 

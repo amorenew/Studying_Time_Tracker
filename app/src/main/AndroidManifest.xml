@@ -20,17 +20,11 @@
         <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
-        <activity
-            android:name=".modules.AddChapterActivity"
-            android:label="@string/title_activity_add_chapter" />
 
         <provider
             android:name=".old.provider.TimeProvider"
             android:authorities="TimeTracker" />
 
-        <activity
-            android:name=".modules.TestCategoryActivity"
-            android:label="@string/title_activity_test_category" />
         <activity android:name=".old.others.home">
 
         </activity>

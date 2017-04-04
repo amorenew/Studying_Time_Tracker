@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.enew.timetracker.R;
 import com.enew.timetracker.commons.presentation.BaseActivity;
-import com.enew.timetracker.commons.presentation.presenter.RecyclerItemClickListener;
+import com.enew.timetracker.commons.presentation.presenter.RowClickListener;
 import com.enew.timetracker.commons.presentation.presenter.SpaceItemDecoration;
 import com.enew.timetracker.modules.category.models.CategoryModel;
 import com.enew.timetracker.modules.category.presentation.presenter.CategoriesAdapter;
@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CategoryActivity extends BaseActivity implements AddCategoryFragment.AddListener {
+public class CategoryActivity extends BaseActivity implements AddCategoryFragment.AddListener, RowClickListener<CategoryModel> {
 
     @BindView(R.id.rvResults)
     protected RecyclerView rvResults;
@@ -58,21 +58,10 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
         rvResults.addItemDecoration(new SpaceItemDecoration(0, 0, 0, 0));
         rvResults.setHasFixedSize(false);
         rvResults.setLayoutManager(new LinearLayoutManager(this));
-        rvResults.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                itemClick(position);
-            }
-        }));
-
-        categoriesAdapter = new CategoriesAdapter(getApplicationContext(), CATEGORY_COMPARATOR);
+        categoriesAdapter = new CategoriesAdapter(this, CATEGORY_COMPARATOR, this);
         Collections.sort(CategoryModel.getCategories(), CATEGORY_COMPARATOR);
         categoriesAdapter.edit().add(CategoryModel.getCategories()).commit();
         rvResults.setAdapter(categoriesAdapter);
-    }
-
-    private void itemClick(int position) {
-        Toast.makeText(this, "Position: " + position, Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.addCategory)
@@ -89,6 +78,29 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
         model.setName(text);
         model.save();
         categoriesAdapter.edit().add(model).commit();
+        categoriesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(CategoryModel model) {
+        Toast.makeText(this, "Click on " + model.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemMenuClick(CategoryModel model) {
+
+    }
+
+    @Override
+    public void onItemMenuEditClick(CategoryModel model) {
+        Toast.makeText(this, "Edit " + model.getName(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onItemMenuDeleteClick(CategoryModel model) {
+        model.delete();
+        categoriesAdapter.edit().remove(model).commit();
         categoriesAdapter.notifyDataSetChanged();
     }
 }
