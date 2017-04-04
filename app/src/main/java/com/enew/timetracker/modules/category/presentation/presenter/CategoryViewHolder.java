@@ -14,17 +14,23 @@ import butterknife.ButterKnife;
 /**
  * Created by amor on 5/3/2016.
  */
+
+
 public class CategoryViewHolder extends SortedListAdapter.ViewHolder<CategoryModel> implements View.OnClickListener {
 
     @BindView(R.id.tvName)
     TextView tvName;
+    @BindView(R.id.textViewOptions)
+    View buttonViewOption;
 
+    // public android.view.View buttonViewOption;
 
     public CategoryViewHolder(View view) {
         super(view);
         ButterKnife.bind(this, view);
         view.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
