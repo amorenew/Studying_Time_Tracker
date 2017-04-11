@@ -18,6 +18,8 @@ import android.view.View;
  *
  * @Override public void onItemClick(View view, int position) {
  */
+
+
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
     GestureDetector mGestureDetector;
     private OnItemClickListener mListener;
@@ -32,17 +34,22 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
         });
     }
 
+
     public RecyclerItemClickListener(Context context, final boolean isCheckBox, OnItemClickListener listener) {
+
         mListener = listener;
+
         mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
 
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
+
                 return true;
             }
         });
     }
+
 
     @Override
     public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent e) {
@@ -54,15 +61,24 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
         return false;
     }
 
+
     @Override
     public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) {
+
+
     }
+
 
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+
     }
 
+
     public interface OnItemClickListener {
+
         void onItemClick(View view, int position);
+
     }
 }

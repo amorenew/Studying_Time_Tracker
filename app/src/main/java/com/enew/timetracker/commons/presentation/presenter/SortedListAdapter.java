@@ -1,9 +1,5 @@
 package com.enew.timetracker.commons.presentation.presenter;
 
-/**
- * Created by TCIG_PC_54 on 3/12/2017.
- */
-
 import android.content.Context;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +18,7 @@ import java.util.List;
  * Date: 13/08/16
  */
 //https://github.com/mcxinyu/SwitchWeather
+
 public abstract class SortedListAdapter<T extends SortedListAdapter.ViewModel> extends RecyclerView.Adapter<SortedListAdapter.ViewHolder<? extends T>> {
 
     private final LayoutInflater mInflater;
@@ -29,7 +26,9 @@ public abstract class SortedListAdapter<T extends SortedListAdapter.ViewModel> e
     private final Comparator<T> mComparator;
 
     public SortedListAdapter(Context context, Class<T> itemClass, Comparator<T> comparator) {
+
         mInflater = LayoutInflater.from(context);
+
         mComparator = comparator;
 
         mSortedList = new SortedList<>(itemClass, new SortedList.Callback<T>() {
@@ -37,38 +36,33 @@ public abstract class SortedListAdapter<T extends SortedListAdapter.ViewModel> e
             public int compare(T a, T b) {
                 return mComparator.compare(a, b);
             }
-
             @Override
             public void onInserted(int position, int count) {
                 notifyItemRangeInserted(position, count);
             }
-
             @Override
             public void onRemoved(int position, int count) {
                 notifyItemRangeRemoved(position, count);
             }
-
             @Override
             public void onMoved(int fromPosition, int toPosition) {
                 notifyItemMoved(fromPosition, toPosition);
             }
-
             @Override
             public void onChanged(int position, int count) {
                 notifyItemRangeChanged(position, count);
             }
-
             @Override
             public boolean areContentsTheSame(T oldItem, T newItem) {
                 return SortedListAdapter.this.areItemContentsTheSame(oldItem, newItem);
             }
-
             @Override
             public boolean areItemsTheSame(T item1, T item2) {
                 return SortedListAdapter.this.areItemsTheSame(item1, item2);
             }
         });
     }
+
 
     @Override
     public final ViewHolder<? extends T> onCreateViewHolder(ViewGroup parent, int viewType) {

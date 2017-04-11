@@ -11,11 +11,9 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import java.util.ArrayList;
-
 /**
  * Created by TCIG_PC_54 on 3/12/2017.
  */
-
 @Table(database = TrackDatabase.class)
 public class CategoryModel extends BaseModel implements SortedListAdapter.ViewModel {
 
@@ -26,6 +24,7 @@ public class CategoryModel extends BaseModel implements SortedListAdapter.ViewMo
     private String name;
 
     public static ArrayList<CategoryModel> getCategories() {
+
         return (ArrayList<CategoryModel>) SQLite.select().from(CategoryModel.class).queryList();
     }
 
@@ -42,6 +41,7 @@ public class CategoryModel extends BaseModel implements SortedListAdapter.ViewMo
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
