@@ -29,15 +29,14 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
     @BindView(R.id.rvResults)
     protected RecyclerView rvResults;
 
-
     Comparator<CategoryModel> CATEGORY_COMPARATOR = new Comparator<CategoryModel>() {
         @Override
         public int compare(CategoryModel a, CategoryModel b) {
-
-            return new CompareToBuilder().append(a.getName(), b.getName()).toComparison();
+            return new CompareToBuilder()
+                    .append(a.getName(), b.getName())
+                    .toComparison();
         }
     };
-
     private CategoriesAdapter categoriesAdapter;
 
     @Override
@@ -53,8 +52,8 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
                 Toast.makeText(CategoryActivity.this, "Back", Toast.LENGTH_SHORT).show();
             }
         });
-
         setToolbarTitle("Category");
+
         rvResults.setItemAnimator(new DefaultItemAnimator());
         rvResults.addItemDecoration(new SpaceItemDecoration(0, 0, 0, 0));
         rvResults.setHasFixedSize(false);
@@ -65,13 +64,13 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
         rvResults.setAdapter(categoriesAdapter);
     }
 
-
     @OnClick(R.id.addCategory)
     public void addCategory(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         AddCategoryFragment addCategoryFragment = new AddCategoryFragment();
         addCategoryFragment.show(fragmentManager, addCategoryFragment.getClass().getSimpleName());
     }
+
     @Override
     public void onAdd(String text) {
         if (text.isEmpty()) return;
@@ -81,17 +80,23 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
         categoriesAdapter.edit().add(model).commit();
         categoriesAdapter.notifyDataSetChanged();
     }
+
     @Override
     public void onItemClick(CategoryModel model) {
         Toast.makeText(this, "Click on " + model.getName(), Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public void onItemMenuClick(CategoryModel model) {
+
     }
+
     @Override
     public void onItemMenuEditClick(CategoryModel model) {
         Toast.makeText(this, "Edit " + model.getName(), Toast.LENGTH_SHORT).show();
+
     }
+
     @Override
     public void onItemMenuDeleteClick(CategoryModel model) {
         model.delete();
