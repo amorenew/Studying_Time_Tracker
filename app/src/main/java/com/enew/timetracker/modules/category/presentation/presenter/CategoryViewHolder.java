@@ -10,9 +10,11 @@ import com.enew.timetracker.modules.category.models.CategoryModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 /**
  * Created by amor on 5/3/2016.
  */
+
 
 public class CategoryViewHolder extends SortedListAdapter.ViewHolder<CategoryModel> implements View.OnClickListener {
 

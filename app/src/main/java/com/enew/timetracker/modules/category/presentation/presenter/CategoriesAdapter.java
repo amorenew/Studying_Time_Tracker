@@ -15,27 +15,24 @@ import com.enew.timetracker.modules.category.models.CategoryModel;
 
 import java.util.Comparator;
 
+/**
+ * Created by TCIG_PC_54 on 7/11/2016.
+ */
+
 public class CategoriesAdapter extends SortedListAdapter<CategoryModel> {
 
     private Context context;
-
     private RowClickListener<CategoryModel> rowClickListener;
 
-
     public CategoriesAdapter(Context context, Comparator<CategoryModel> comparator, RowClickListener<CategoryModel> rowClickListener) {
-
         super(context, CategoryModel.class, comparator);
         this.context = context;
         this.rowClickListener = rowClickListener;
-
     }
-
 
     @Override
     protected ViewHolder<? extends CategoryModel> onCreateViewHolder(LayoutInflater inflater, ViewGroup parent, int viewType) {
-
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_category, parent, false);
-
         return new CategoryViewHolder(itemView);
     }
 
@@ -52,26 +49,16 @@ public class CategoriesAdapter extends SortedListAdapter<CategoryModel> {
 
     @Override
     public void onBindViewHolder(ViewHolder<? extends CategoryModel> viewHolder, int position) {
-
         super.onBindViewHolder(viewHolder, position);
-
         final CategoryViewHolder holder = (CategoryViewHolder) viewHolder;
         final CategoryModel categoryModel = getItem(position);
-
         holder.tvName.setText(categoryModel.getName());
-
         holder.tvName.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 rowClickListener.onItemClick(categoryModel);
-
             }
-
         });
-
-
         holder.subMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,10 +73,10 @@ public class CategoriesAdapter extends SortedListAdapter<CategoryModel> {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.edit:
-                                // rowClickListener.onItemMenuEditClick(categoryModel);
+                                rowClickListener.onItemMenuEditClick(categoryModel);
                                 break;
                             case R.id.delete:
-                                //rowClickListener.onItemMenuDeleteClick(categoryModel);
+                                rowClickListener.onItemMenuDeleteClick(categoryModel);
                                 break;
                         }
                         return false;

@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CategoryActivity extends BaseActivity implements AddCategoryFragment.AddListener, RowClickListener<CategoryModel> {
+public class CategoryActivity extends BaseActivity implements AddCategoryFragment.AddListener, EditCategoryFragment.EditListener, RowClickListener<CategoryModel> {
 
     @BindView(R.id.rvResults)
     protected RecyclerView rvResults;
@@ -38,6 +38,7 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
         }
     };
     private CategoriesAdapter categoriesAdapter;
+    private CategoryModel currentEditingCategoryModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,15 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
     }
 
     @Override
+    public void onEdit(String text) {
+        if (text.isEmpty()) return;
+        currentEditingCategoryModel.setName(text);
+        currentEditingCategoryModel.update();
+//        categoriesAdapter.edit().update(currentEditingCategoryModel).commit();
+        categoriesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onItemClick(CategoryModel model) {
         Toast.makeText(this, "Click on " + model.getName(), Toast.LENGTH_SHORT).show();
     }
@@ -93,8 +103,10 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
 
     @Override
     public void onItemMenuEditClick(CategoryModel model) {
-        Toast.makeText(this, "Edit " + model.getName(), Toast.LENGTH_SHORT).show();
-
+        currentEditingCategoryModel = model;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        EditCategoryFragment editCategoryFragment = new EditCategoryFragment();
+        editCategoryFragment.show(fragmentManager, editCategoryFragment.getClass().getSimpleName());
     }
 
     @Override
@@ -103,4 +115,6 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
         categoriesAdapter.edit().remove(model).commit();
         categoriesAdapter.notifyDataSetChanged();
     }
+
+
 }
