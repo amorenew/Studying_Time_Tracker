@@ -129,6 +129,8 @@ public abstract class SortedListAdapter<T extends SortedListAdapter.ViewModel> e
         Editor<T> removeAll();
 
         void commit();
+
+
     }
 
     public interface Filter<T> {

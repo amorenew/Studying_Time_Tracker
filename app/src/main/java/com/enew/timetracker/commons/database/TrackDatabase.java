@@ -1,11 +1,8 @@
 package com.enew.timetracker.commons.database;
-
 /**
  * Created by TCIG_PC_54 on 3/12/2017.
  */
-
 import com.raizlabs.android.dbflow.annotation.Database;
-
 /**
  * Database config class
  */
@@ -15,5 +12,4 @@ public class TrackDatabase {
     public static final String NAME = "TrackDatabase";
     //database version number
     public static final int VERSION = 1;
-
 }
