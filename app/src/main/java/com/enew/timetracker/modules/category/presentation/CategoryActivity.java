@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.enew.timetracker.R;
+import com.enew.timetracker.commons.presentation.AddItemFragment;
 import com.enew.timetracker.commons.presentation.BaseActivity;
+import com.enew.timetracker.commons.presentation.EditItemFragment;
 import com.enew.timetracker.commons.presentation.presenter.RowClickListener;
 import com.enew.timetracker.commons.presentation.presenter.SpaceItemDecoration;
 import com.enew.timetracker.modules.category.models.CategoryModel;
@@ -24,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CategoryActivity extends BaseActivity implements AddCategoryFragment.AddListener, EditCategoryFragment.EditListener, RowClickListener<CategoryModel> {
+public class CategoryActivity extends BaseActivity implements AddItemFragment.AddListener, EditItemFragment.EditListener, RowClickListener<CategoryModel> {
 
     @BindView(R.id.rvResults)
     protected RecyclerView rvResults;
@@ -50,7 +52,7 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
         addBackButtonWhite(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CategoryActivity.this, "Back", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         setToolbarTitle("Category");
@@ -68,8 +70,8 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
     @OnClick(R.id.addCategory)
     public void addCategory(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        AddCategoryFragment addCategoryFragment = new AddCategoryFragment();
-        addCategoryFragment.show(fragmentManager, addCategoryFragment.getClass().getSimpleName());
+        AddItemFragment addItemFragment = new AddItemFragment();
+        addItemFragment.show(fragmentManager, addItemFragment.getClass().getSimpleName());
     }
 
     @Override
@@ -105,8 +107,8 @@ public class CategoryActivity extends BaseActivity implements AddCategoryFragmen
     public void onItemMenuEditClick(CategoryModel model) {
         currentEditingCategoryModel = model;
         FragmentManager fragmentManager = getSupportFragmentManager();
-        EditCategoryFragment editCategoryFragment = new EditCategoryFragment();
-        editCategoryFragment.show(fragmentManager, editCategoryFragment.getClass().getSimpleName());
+        EditItemFragment editItemFragment = new EditItemFragment();
+        editItemFragment.show(fragmentManager, editItemFragment.getClass().getSimpleName());
     }
 
     @Override

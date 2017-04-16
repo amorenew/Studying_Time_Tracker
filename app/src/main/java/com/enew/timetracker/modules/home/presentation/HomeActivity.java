@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category.presentation.presenter;
+package com.enew.timetracker.modules.home.presentation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,10 @@ import android.widget.Toast;
 
 import com.enew.timetracker.R;
 import com.enew.timetracker.commons.presentation.presenter.RecyclerItemClickListener;
-import com.enew.timetracker.modules.category.models.HomeItemModel;
 import com.enew.timetracker.modules.category.presentation.CategoryActivity;
-import com.enew.timetracker.modules.category.presentation.LevelActivity;
+import com.enew.timetracker.modules.home.models.HomeItemModel;
+import com.enew.timetracker.modules.home.presentation.presenter.HomeAdapter;
+import com.enew.timetracker.modules.level.presentation.LevelActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,5 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemClick
                 Toast.makeText(HomeActivity.this, "Reports", Toast.LENGTH_LONG).show();
                 break;
         }
-        finish();
     }
 }

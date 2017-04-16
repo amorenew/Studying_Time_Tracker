@@ -1,11 +1,11 @@
-package com.enew.timetracker.modules.category.presentation.presenter;
+package com.enew.timetracker.modules.level.presentation.presenters;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.enew.timetracker.R;
 import com.enew.timetracker.commons.presentation.presenter.SortedListAdapter;
-import com.enew.timetracker.modules.category.models.LevelModel;
+import com.enew.timetracker.modules.level.models.LevelModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

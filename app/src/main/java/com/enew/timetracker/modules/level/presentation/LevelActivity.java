@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category.presentation;
+package com.enew.timetracker.modules.level.presentation;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.enew.timetracker.R;
+import com.enew.timetracker.commons.presentation.AddItemFragment;
 import com.enew.timetracker.commons.presentation.BaseActivity;
+import com.enew.timetracker.commons.presentation.EditItemFragment;
 import com.enew.timetracker.commons.presentation.presenter.RowClickListener;
 import com.enew.timetracker.commons.presentation.presenter.SpaceItemDecoration;
-import com.enew.timetracker.modules.category.models.LevelModel;
-import com.enew.timetracker.modules.category.presentation.presenter.LevelAdapter;
+import com.enew.timetracker.modules.level.models.LevelModel;
+import com.enew.timetracker.modules.level.presentation.presenters.LevelAdapter;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
@@ -29,10 +31,10 @@ import butterknife.OnClick;
  * Created by hamoda on 4/15/2017.
  */
 
-public class LevelActivity extends BaseActivity implements AddCategoryFragment.AddListener, RowClickListener<LevelModel> {
+public class LevelActivity extends BaseActivity implements AddItemFragment.AddListener, EditItemFragment.EditListener, RowClickListener<LevelModel> {
 
     @BindView(R.id.rv_level)
-    protected RecyclerView rv_level;
+    protected RecyclerView rvLevel;
 
     Comparator<LevelModel> CATEGORY_COMPARATOR = new Comparator<LevelModel>() {
 
@@ -43,6 +45,7 @@ public class LevelActivity extends BaseActivity implements AddCategoryFragment.A
     };
 
     private LevelAdapter levelAdapter;
+    private LevelModel currentEditingLevelModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,29 +56,27 @@ public class LevelActivity extends BaseActivity implements AddCategoryFragment.A
         addBackButtonWhite(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(LevelActivity.this, "Back", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         setToolbarTitle("Level");
         // Toast.makeText(CategoryActivity.this," " + CategoryModel.getCategories(),Toast.LENGTH_SHORT).show();
-        rv_level.setItemAnimator(new DefaultItemAnimator());
-        rv_level.addItemDecoration(new SpaceItemDecoration(0, 0, 0, 0));
-        rv_level.setHasFixedSize(false);
-        rv_level.setLayoutManager(new LinearLayoutManager(this));
+        rvLevel.setItemAnimator(new DefaultItemAnimator());
+        rvLevel.addItemDecoration(new SpaceItemDecoration(0, 0, 0, 0));
+        rvLevel.setHasFixedSize(false);
+        rvLevel.setLayoutManager(new LinearLayoutManager(this));
         levelAdapter = new LevelAdapter(this, CATEGORY_COMPARATOR, this);
         Collections.sort(LevelModel.getCategories(), CATEGORY_COMPARATOR);
         levelAdapter.edit().add(LevelModel.getCategories()).commit();
-        rv_level.setAdapter(levelAdapter);
+        rvLevel.setAdapter(levelAdapter);
     }
-
 
     @OnClick(R.id.add_level)
     public void addCategory(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        AddCategoryFragment addCategoryFragment = new AddCategoryFragment();
-        addCategoryFragment.show(fragmentManager, addCategoryFragment.getClass().getSimpleName());
+        AddItemFragment addItemFragment = new AddItemFragment();
+        addItemFragment.show(fragmentManager, addItemFragment.getClass().getSimpleName());
     }
-
 
     @Override
     public void onAdd(String text) {
@@ -88,26 +89,31 @@ public class LevelActivity extends BaseActivity implements AddCategoryFragment.A
     }
 
     @Override
-    public void onItemClick(LevelModel model) {
-
-        Toast.makeText(this, "Click on " + model.getName(), Toast.LENGTH_SHORT).show();
-
+    public void onEdit(String text) {
+        if (text.isEmpty()) return;
+        currentEditingLevelModel.setName(text);
+        currentEditingLevelModel.update();
+//        categoriesAdapter.edit().update(currentEditingCategoryModel).commit();
+        levelAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onItemClick(LevelModel model) {
+        Toast.makeText(this, "Click on " + model.getName(), Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onItemMenuClick(LevelModel model) {
-
 
     }
 
     @Override
     public void onItemMenuEditClick(LevelModel model) {
-
-        Toast.makeText(this, "Edit " + model.getName(), Toast.LENGTH_SHORT).show();
-
+        currentEditingLevelModel = model;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        EditItemFragment editItemFragment = new EditItemFragment();
+        editItemFragment.show(fragmentManager, editItemFragment.getClass().getSimpleName());
     }
-
 
     @Override
     public void onItemMenuDeleteClick(LevelModel model) {

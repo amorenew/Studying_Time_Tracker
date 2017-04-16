@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category.presentation.presenter;
+package com.enew.timetracker.modules.level.presentation.presenters;
 
 import android.content.Context;
 import android.support.v7.widget.PopupMenu;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.enew.timetracker.R;
 import com.enew.timetracker.commons.presentation.presenter.RowClickListener;
 import com.enew.timetracker.commons.presentation.presenter.SortedListAdapter;
-import com.enew.timetracker.modules.category.models.LevelModel;
+import com.enew.timetracker.modules.level.models.LevelModel;
 
 import java.util.Comparator;
 
@@ -82,10 +82,10 @@ public class LevelAdapter extends SortedListAdapter<LevelModel> {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.edit:
-                                // rowClickListener.onItemMenuEditClick(categoryModel);
+                                rowClickListener.onItemMenuEditClick(levelModel);
                                 break;
                             case R.id.delete:
-                                //rowClickListener.onItemMenuDeleteClick(categoryModel);
+                                rowClickListener.onItemMenuDeleteClick(levelModel);
                                 break;
                         }
                         return false;

@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category.models;
+package com.enew.timetracker.modules.level.models;
 
 import com.enew.timetracker.commons.database.TrackDatabase;
 import com.enew.timetracker.commons.presentation.presenter.SortedListAdapter;

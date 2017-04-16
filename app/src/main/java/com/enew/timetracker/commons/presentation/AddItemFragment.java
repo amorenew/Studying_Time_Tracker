@@ -1,4 +1,4 @@
-package com.enew.timetracker.modules.category.presentation;
+package com.enew.timetracker.commons.presentation;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,24 +14,24 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditCategoryFragment extends DialogFragment {
+public class AddItemFragment extends DialogFragment {
 
     @BindView(R.id.etName)
     protected EditText etName;
-    private EditListener editListener;
+    private AddListener addListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getDialog().setTitle("Editing Category");
-        View view = inflater.inflate(R.layout.view_edit_category, container, false);
+        getDialog().setTitle("Adding Category");
+        View view = inflater.inflate(R.layout.view_add_category, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
-    @OnClick(R.id.btnEdit)
-    public void editCategory(View view) {
-        editListener.onEdit(etName.getText().toString());
+    @OnClick(R.id.btnAdd)
+    public void addCategory(View view) {
+        addListener.onAdd(etName.getText().toString());
         dismiss();
     }
 
@@ -39,14 +39,14 @@ public class EditCategoryFragment extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            editListener = (EditListener) context;
+            addListener = (AddListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement AddListener");
         }
     }
 
     // Container Activity must implement this interface
-    public interface EditListener {
-        void onEdit(String text);
+    public interface AddListener {
+        void onAdd(String text);
     }
 }
