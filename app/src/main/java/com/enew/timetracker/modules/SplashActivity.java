@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.enew.timetracker.R;
-import com.enew.timetracker.modules.category.presentation.CategoryActivity;
+import com.enew.timetracker.modules.category.presentation.presenter.HomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
     // ---Splash screen timer ---
@@ -30,9 +30,9 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 // This method will be executed once the timer is over
                 // Start your app main activity
-                // Intent i = new Intent(SplashActivity.this, HomeActivity.class);
+                Intent i = new Intent(SplashActivity.this, HomeActivity.class);
                 // Intent i = new Intent(SplashActivity.this,LevelActivity.class);
-                Intent i = new Intent(SplashActivity.this, CategoryActivity.class);
+//                Intent i = new Intent(SplashActivity.this, CategoryActivity.class);
                 startActivity(i);
                 // close this activity
                 finish();
