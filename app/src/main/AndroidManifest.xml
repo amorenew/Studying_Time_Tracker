@@ -29,11 +29,14 @@
 
         </activity>
         <activity android:name=".old.others.CardViewActivity" />
+
         <activity android:name=".old.others.regstration" />
         <activity android:name=".old.others.delete_book" />
         <activity android:name=".old.others.edit_page" />
-        <activity android:name=".modules.category.presentation.presenter.hom_activity" />
+        <activity android:name=".modules.category.presentation.presenter.HomeActivity" />
         <activity android:name=".modules.category.presentation.CategoryActivity" />
+        <activity android:name=".modules.category.presentation.LevelActivity" />
+
         <activity android:name=".modules.SplashActivity">
 
             <intent-filter>

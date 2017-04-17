@@ -13,32 +13,33 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 import java.util.ArrayList;
 
 /**
- * Created by TCIG_PC_54 on 3/12/2017.
+ * Created by hamoda on 4/15/2017.
  */
 
 @Table(database = TrackDatabase.class)
-public class CategoryModel extends BaseModel implements SortedListAdapter.ViewModel {
+public class LevelModel extends BaseModel implements SortedListAdapter.ViewModel {
     @PrimaryKey(autoincrement = true)
     private long id;
     @Column
     @Unique(onUniqueConflict = ConflictAction.IGNORE)
     private String name;
 
-    public static ArrayList<CategoryModel> getCategories() {
+    public static ArrayList<LevelModel> getCategories() {
 
-        return (ArrayList<CategoryModel>) SQLite.select().from(CategoryModel.class).queryList();
+        return (ArrayList<LevelModel>) SQLite.select().from(LevelModel.class).queryList();
     }
 
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
@@ -48,13 +49,12 @@ public class CategoryModel extends BaseModel implements SortedListAdapter.ViewMo
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CategoryModel that = (CategoryModel) o;
+        LevelModel that = (LevelModel) o;
         return getName() != null ? getName().equals(that.getName()) : that.getName() == null;
     }
 
     @Override
     public int hashCode() {
-
         return getName() != null ? getName().hashCode() : 0;
     }
 }

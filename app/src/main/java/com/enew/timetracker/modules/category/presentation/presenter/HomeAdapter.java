@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.enew.timetracker.R;
 import com.enew.timetracker.modules.category.models.HomeItemModel;
@@ -45,11 +44,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.N_MenueViewHol
                 if (isLongClick) {
                     // Log.d("yes", " "+position);
                     //   Toast.makeText(mContext,"sdsdfsdf",Toast.LENGTH_SHORT).show();
-                    Toast.makeText(view.getContext(), "#" + position, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(view.getContext(), "#" + position, Toast.LENGTH_SHORT).show();
 
                 } else {
+                    //  if(position==0){
 
-                    Toast.makeText(view.getContext(), "#" + position, Toast.LENGTH_SHORT).show();
+
+                    //}
+
+                    //Toast.makeText(view.getContext(), "#" + position, Toast.LENGTH_SHORT).show();
 
                 }
             }

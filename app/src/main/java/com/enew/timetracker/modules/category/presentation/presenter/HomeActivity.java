@@ -17,32 +17,30 @@ import java.util.List;
 /**
  * Created by hamoda on 4/11/2017.
  */
-public class hom_activity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
+
     Context context;
-    private List<HomeItemModel> Home_Item_Model;
-    private String[] mList;
+
+    private List<HomeItemModel> homeItemModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hom_activity);
-        Home_Item_Model = new ArrayList<>();
-        TitelMenue();
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
+        setContentView(R.layout.home_activity);
+        homeItemModel = new ArrayList<>();
+        fillHomeItems();
+        RecyclerView rvHome = (RecyclerView) findViewById(R.id.rvHome);
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
-        rv.setLayoutManager(lm);
-        HomeAdapter adapter = new HomeAdapter(Home_Item_Model);
-        rv.setAdapter(adapter);
+        rvHome.setLayoutManager(lm);
+        HomeAdapter homeAdapter = new HomeAdapter(homeItemModel);
+        rvHome.setAdapter(homeAdapter);
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -50,18 +48,22 @@ public class hom_activity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
+        //  Toast.makeText(this, "Click on " + id , Toast.LENGTH_SHORT).show();
         if (id == R.id.action_settings) {
-            //Toast.makeText(this, "Click on " + id , Toast.LENGTH_SHORT).show();
+            //   Intent i = new Intent(HomeActivity.this, CategoryActivity.class);
+            //   startActivity(i);
+            //   close this activity
+            //  finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    private void TitelMenue() {
-        Home_Item_Model.add(new HomeItemModel("Category", R.drawable.c));
-        Home_Item_Model.add(new HomeItemModel("Level", R.drawable.l));
-        Home_Item_Model.add(new HomeItemModel("Box", R.drawable.b));
-        Home_Item_Model.add(new HomeItemModel("Reports", R.drawable.r));
+    private void fillHomeItems() {
+        homeItemModel.add(new HomeItemModel(getString(R.string.category), R.drawable.c));
+        homeItemModel.add(new HomeItemModel(getString(R.string.level), R.drawable.l));
+        homeItemModel.add(new HomeItemModel(getString(R.string.books), R.drawable.b));
+        homeItemModel.add(new HomeItemModel(getString(R.string.reports), R.drawable.r));
     }
 }

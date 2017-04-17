@@ -5,16 +5,16 @@ import android.widget.TextView;
 
 import com.enew.timetracker.R;
 import com.enew.timetracker.commons.presentation.presenter.SortedListAdapter;
-import com.enew.timetracker.modules.category.models.CategoryModel;
+import com.enew.timetracker.modules.category.models.LevelModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by amor on 5/3/2016.
+ * Created by hamoda on 4/15/2017.
  */
 
-public class CategoryViewHolder extends SortedListAdapter.ViewHolder<CategoryModel> implements View.OnClickListener {
+public class LevelViewHolder extends SortedListAdapter.ViewHolder<LevelModel> implements View.OnClickListener {
 
     @BindView(R.id.tvName)
     TextView tvName;
@@ -22,9 +22,9 @@ public class CategoryViewHolder extends SortedListAdapter.ViewHolder<CategoryMod
 
     View subMenu;
 
-    // public android.view.View buttonViewOption;
+// public android.view.View buttonViewOption;
 
-    public CategoryViewHolder(View view) {
+    public LevelViewHolder(View view) {
         super(view);
         ButterKnife.bind(this, view);
         view.setOnClickListener(this);
@@ -36,7 +36,7 @@ public class CategoryViewHolder extends SortedListAdapter.ViewHolder<CategoryMod
     }
 
     @Override
-    protected void performBind(CategoryModel item) {
+    protected void performBind(LevelModel item) {
 
     }
 }

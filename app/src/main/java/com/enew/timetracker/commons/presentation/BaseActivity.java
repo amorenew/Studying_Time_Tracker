@@ -19,7 +19,6 @@ import com.enew.timetracker.commons.utils.Util;
 
 public class BaseActivity extends AppCompatActivity {
     Toolbar toolbar;
-
     /**
      * set toolbar title
      *
@@ -28,27 +27,23 @@ public class BaseActivity extends AppCompatActivity {
     public void setToolbarTitle(String title) {
         ((TextView) toolbar.findViewById(R.id.tvTitle)).setText(title);
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         // remove focus from edit text in start of activity
         findViewById(android.R.id.content).setFocusableInTouchMode(true);
     }
-
     protected void addToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Check if the version of Android is Lollipop or higher
 //        showTransparentStatusBar();
     }
-
     protected void addBackButtonWhite(View.OnClickListener clickListener) {
         addToolBar();
         toolbar.setNavigationIcon(Util.getDrawableLocale(this, R.drawable.ic_back_white));
         toolbar.setNavigationOnClickListener(clickListener);
     }
-
     //handle focus and keyboard when click outside edit text
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
